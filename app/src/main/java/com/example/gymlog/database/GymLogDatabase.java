@@ -1,58 +1,41 @@
 package com.example.gymlog.database;
 
 import android.content.Context;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.gymlog.database.entities.GymLog;
-import com.example.gymlog.MainActivity;
-import com.example.gymlog.database.typeConverters.LocalDateTypeConverter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@TypeConverters(LocalDateTypeConverter.class)
 @Database(entities = {GymLog.class}, version = 1, exportSchema = false)
+@TypeConverters({com.example.gymlog.database.LocalDateTypeConverter.class})
 public abstract class GymLogDatabase extends RoomDatabase {
+    public static final String GYM_LOG_TABLE = "gym_log_table";
+    private static final String DB_NAME = "GYM_LOG_DATABASE";
+    private static GymLogDatabase database;
 
-    private static final String DATABASE_NAME = "gymLog_database";
-    public static final String GYM_LOG_TABLE = "gymLogTable";
+    public static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(4);
 
-    private static volatile GymLogDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-
-    static GymLogDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
+    public static GymLogDatabase getDatabase(final Context context) {
+        if (database == null) {
             synchronized (GymLogDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(
-                                    context.getApplicationContext(),
-                                    GymLogDatabase.class,
-                                    DATABASE_NAME
-                            )
-                            .fallbackToDestructiveMigration()
-                            .addCallback(addDefaultValues)
-                            .build();
+                if (database == null) {
+                    database = Room.databaseBuilder(
+                            context.getApplicationContext(),
+                            GymLogDatabase.class,
+                            DB_NAME
+                    ).build();
                 }
             }
         }
-        return INSTANCE;
+        return database;
     }
-
-    private static final RoomDatabase.Callback addDefaultValues = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            Log.i(MainActivity.TAG, "Database created!");
-        }
-    };
 
     public abstract GymLogDAO gymLogDAO();
 }

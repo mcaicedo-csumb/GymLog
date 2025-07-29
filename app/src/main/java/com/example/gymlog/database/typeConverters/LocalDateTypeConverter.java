@@ -1,23 +1,20 @@
-package com.example.gymlog.database.typeConverters;
+package com.example.gymlog.database;
 
 import androidx.room.TypeConverter;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class LocalDateTypeConverter {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
     @TypeConverter
-    public long convertDateToLong(LocalDateTime date) {
-        ZonedDateTime zdt = ZonedDateTime.of(date, ZoneId.systemDefault());
-        return zdt.toInstant().toEpochMilli();
+    public static String fromLocalDateTime(LocalDateTime date) {
+        return date.format(formatter);
     }
 
     @TypeConverter
-    public LocalDateTime convertLongToDate(Long epochMilli) {
-        Instant instant = Instant.ofEpochMilli(epochMilli);
-        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-
+    public static LocalDateTime toLocalDateTime(String dateString) {
+        return LocalDateTime.parse(dateString, formatter);
     }
 }
