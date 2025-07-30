@@ -32,6 +32,7 @@ import java.util.List;
 /**
  * Main screen. Handles user session and logs display.
  * @author Maria Caicedo
+ * 30 july 2025
  */
 public class MainActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.gymlog.MAIN_ACTIVITY_USER_ID";
