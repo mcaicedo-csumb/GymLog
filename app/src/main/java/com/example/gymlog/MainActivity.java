@@ -37,7 +37,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.gymlog.MAIN_ACTIVITY_USER_ID";
     static final String SHARED_PREFERENCE_USERID_KEY =  "com.example.gymlog.SHARED_PREFERENCE_USERID_KEY";
-    static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.gymlog.SAVED_INSTANCE_STATE_USERID_KEY";
+    static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.gymlog.SAnebVED_INSTANCE_STATE_USERID_KEY";
     private static final int LOGGED_OUT = -1;
 
     private ActivityMainBinding binding;
