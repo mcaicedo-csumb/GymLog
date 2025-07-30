@@ -8,6 +8,10 @@
     <string name="reps">Reps</string>
     <string name="log">Log!</string>
     <string name="nothing_to_show_time_to_hit_the_gym">Nothing to show, time to hit the gym!</string>
-    <string name="empty_log_message">No logs yet. Please enter an exercise.</string>
-
+    <string name="login_welcome">Welcome to the Gymlog.\nPlease Sign in.</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login!</string>
+    <string name="preference_file_key">examplePreferenceFileNameGymLog</string>
+    <string name="preference_userId_key">examplePreferenceUserIdKeyGymLog</string>
 </resources>

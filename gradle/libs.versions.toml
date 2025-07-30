@@ -15,6 +15,7 @@ constraintlayout = "2.2.1"
 materialVersion = "1.9.0"
 roomRuntime = "2.6.1"
 roomRxjava2 = "2.7.2"
+firebaseFirestore = "26.0.0"
 
 [libraries]
 activity-v172 = { module = "androidx.activity:activity", version.ref = "activityVersion" }
@@ -32,6 +33,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "roomRxjava2" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
